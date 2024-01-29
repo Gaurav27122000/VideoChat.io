@@ -3,6 +3,7 @@ const http = require("http");
 const { v4: uuidv4 } = require("uuid");
 const cors = require("cors");
 const twilio = require("twilio");
+require('dotenv').config();
 
 const PORT = process.env.PORT || 5002;
 const app = express();
@@ -32,8 +33,8 @@ app.get("/api/room-exists/:roomId", (req, res) => {
 });
 
 app.get("/api/get-turn-credentials", (req, res) => {
-  const accountSid = "AC7cff1792ce0f8d410f4790a5048eeeb7";
-  const authToken = "c9f5e65fe22c2e6764d5ca5530d4970c";
+  const accountSid = process.env.SID;
+  const authToken = process.env.token;
 
   const client = twilio(accountSid, authToken);
 
